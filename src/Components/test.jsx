@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import LifeCicle from "./LifeCIcle";
 
 class Test extends Component {
   state = {};
   render() {
-    return <div>test</div>;
+    return (
+      <div>
+        <LifeCicle />
+      </div>
+    );
   }
 }
 
