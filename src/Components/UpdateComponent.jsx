@@ -6,9 +6,24 @@ class UpdateComponent extends Component {
     console.log("componentWillReceiveProps");
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("shouldComponentUpdate (должен возвращать true или false)");
+    return true;
+  }
+
+  //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
+  componentWillUpdate(nextProps, nextState) {
+    console.log("componentWillUpdate");
+  }
+
   render() {
     const { counter } = this.props;
-    return <div>{counter}</div>;
+    return (
+      <div>
+        {counter}
+        <button onClick={this.props.ClearCounter}>ClearCounter</button>
+      </div>
+    );
   }
 }
 

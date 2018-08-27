@@ -19,7 +19,7 @@ class LifeCicle extends Component {
     console.log("4 - componentDidMount (jquery, счетчик, сетевый запросы, работа с DOM)");
     this.intervalId = setInterval(() => {
       this.setState(state => ({ counter: state.counter + 1 }));
-    }, 5000);
+    }, 3000);
   }
 
   componentWillUnmount() {
@@ -32,13 +32,17 @@ class LifeCicle extends Component {
     console.log(" 5 - componentWillUpdate ");
   }
 
+  ClearCounter = () => {
+    clearInterval(this.intervalId);
+  };
+
   render() {
     console.log("3 - render");
     //const { counter } = this.state;
     return (
       <div>
         <h1>Жизненный цикл</h1>
-        <UpdateComponent counter={this.state.counter} />
+        <UpdateComponent counter={this.state.counter} ClearCounter={this.ClearCounter} />
       </div>
     );
   }
