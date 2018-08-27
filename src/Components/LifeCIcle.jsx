@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import UpdateComponent from "./UpdateComponent";
 
 class LifeCicle extends Component {
   constructor(props) {
     super(props);
     console.log("1 - constructor(state) LifeCicle");
     this.state = {
-      arg: props.arg
+      counter: 0
     };
   }
 
@@ -16,10 +17,14 @@ class LifeCicle extends Component {
 
   componentDidMount() {
     console.log("4 - componentDidMount (jquery, счетчик, сетевый запросы, работа с DOM)");
+    this.intervalId = setInterval(() => {
+      this.setState(state => ({ counter: state.counter + 1 }));
+    }, 5000);
   }
 
   componentWillUnmount() {
     console.log(" - componentWillUnmount (плагины jQuery, clearInterval, удаляем Listeners)");
+    clearInterval(this.intervalId);
   }
 
   //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
@@ -29,9 +34,11 @@ class LifeCicle extends Component {
 
   render() {
     console.log("3 - render");
+    //const { counter } = this.state;
     return (
       <div>
         <h1>Жизненный цикл</h1>
+        <UpdateComponent counter={this.state.counter} />
       </div>
     );
   }
